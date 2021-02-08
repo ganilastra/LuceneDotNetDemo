@@ -38,9 +38,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnIndexData = new System.Windows.Forms.Button();
-            this.btnDeleteIndex = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvResults)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,19 +138,9 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(1011, 581);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(152, 112);
-            this.btnClear.TabIndex = 12;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
             // btnIndexData
             // 
-            this.btnIndexData.Location = new System.Drawing.Point(1250, 406);
+            this.btnIndexData.Location = new System.Drawing.Point(37, 420);
             this.btnIndexData.Name = "btnIndexData";
             this.btnIndexData.Size = new System.Drawing.Size(144, 118);
             this.btnIndexData.TabIndex = 13;
@@ -160,24 +148,12 @@
             this.btnIndexData.UseVisualStyleBackColor = true;
             this.btnIndexData.Click += new System.EventHandler(this.btnIndexData_Click);
             // 
-            // btnDeleteIndex
-            // 
-            this.btnDeleteIndex.Location = new System.Drawing.Point(1250, 581);
-            this.btnDeleteIndex.Name = "btnDeleteIndex";
-            this.btnDeleteIndex.Size = new System.Drawing.Size(144, 112);
-            this.btnDeleteIndex.TabIndex = 14;
-            this.btnDeleteIndex.Text = "DELETE INDEX";
-            this.btnDeleteIndex.UseVisualStyleBackColor = true;
-            this.btnDeleteIndex.Click += new System.EventHandler(this.btnDeleteIndex_Click);
-            // 
             // SearchSongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 759);
-            this.Controls.Add(this.btnDeleteIndex);
             this.Controls.Add(this.btnIndexData);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
@@ -209,9 +185,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnIndexData;
-        private System.Windows.Forms.Button btnDeleteIndex;
     }
 }
 

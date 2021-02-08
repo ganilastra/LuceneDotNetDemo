@@ -44,22 +44,15 @@ namespace SearchSongLucene
                 searchParams.Language = chosenLanguage;
             }
 
-            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQueryAndSortingAndFiltering);
+            // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
+            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnIndexData_Click(object sender, EventArgs e)
         {
-            Indexer.IndexSongs();
-        }
-
-        private void btnDeleteIndex_Click(object sender, EventArgs e)
-        {
             Indexer.DeleteIndexes();
+            Indexer.IndexSongs();
         }
     }
 }

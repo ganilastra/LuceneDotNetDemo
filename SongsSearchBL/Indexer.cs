@@ -109,6 +109,35 @@ namespace SongSearchBL
                                 jump around!",
                                 Languages.English),
 
+
+                   new Song("House of the Rising Sun", "The Animals", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1964, 5, 5), DateTimeKind.Utc)), 
+                   @"There is a house in New Orleans
+They call the Rising Sun
+And it's been the ruin of many a poor boy
+And God, I know I'm one
+My mother was a tailor
+She sewed my new blue jeans
+My father was a gamblin' man
+Down in New Orleans
+Now the only thing a gambler needs
+Is a suitcase and a trunk
+And the only time he's satisfied
+Is when he's all drunk
+Oh mother, tell your children
+Not to do what I have done
+Spend your lives in sin and misery
+In the House of the Rising Sun
+Well, I got one foot on the platform
+The other foot on the train
+I'm goin' back to New Orleans
+To wear that ball and chain
+Well, there is a house in New Orleans
+They call the Rising Sun
+And it's been the ruin of many a poor boy
+And God, I know I'm one",
+                    Languages.English),
+
+
                 new Song("Jump Around", "House Of pain", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1992, 5, 5), DateTimeKind.Utc)), @"Pack it up, pack it in, let me begin
                     I came to win, battle me that's a sin
                     I won't ever slack up, punk you better back up
@@ -130,6 +159,32 @@ namespace SongSearchBL
                     Jump! Jump! Jump! Jump! (Everybody jump)
                     Jump! Jump! Jump!…",
                     Languages.English),
+
+                     new Song("Besame Mucho", "Consuelo Velasquez", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1944, 1, 12), DateTimeKind.Utc)), @"Ay
+                            Bésame, bésame mucho
+Como si fuera esta la noche
+La última vez
+Bésame, bésame mucho
+Que tengo miedo a perderte
+Perderte después
+Bésame, bésame mucho
+Como si fuera esta la noche
+La última vez
+Bésame, bésame mucho
+Que tengo miedo a perderte
+Perderte después
+Quiero tenerte muy cerca
+Mirarme en tus ojos
+Verte junto a mi
+Piensa que tal vez mañana
+Yo ya estaré lejos
+Muy lejos de aquí
+Bésame, bésame mucho
+Como si fuera esta la noche
+La última vez
+Bésame, bésame… …",
+                    Languages.Spanish),
+
 
                 new Song("Despacito", "Luis Fonsi", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(2017, 1, 12), DateTimeKind.Utc)), @"Ay
                             Fonsi
