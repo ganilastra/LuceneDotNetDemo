@@ -3,7 +3,7 @@ This is a simple Lucene Dot Net demo project. This pretty much covers the very b
 
 REMINDER: BE SURE TO CREATE A C:\Lucene\Index FOLDER on your machine.
 
-This allows you to search through a Songs (with TITLE, ARTIST, LYRICS, RELEASED DATE fields) using LUCENE.NET
+This allows you to search through Songs DATA (with TITLE, ARTIST, LYRICS, RELEASED DATE fields) using LUCENE.NET
 
 It has two projects 
 (1) SearchSongLucene - which is a very simple WINFORMS with very simple UI
