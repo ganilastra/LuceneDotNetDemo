@@ -2,10 +2,12 @@
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
+using Newtonsoft.Json.Linq;
 using NodaTime;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SongSearchBL
 {
@@ -32,7 +34,7 @@ namespace SongSearchBL
 
                     var songId = song.Id.ToString("N");
 
-                    // The index does not need to be analyzed.
+                    // This FIELD does not need to be analyzed.
                     document.Add(
                       new Field(SongFieldNames.FieldSongId, songId, Field.Store.YES, Field.Index.NOT_ANALYZED));
 
@@ -54,10 +56,10 @@ namespace SongSearchBL
                     numReleasedDateField.SetLongValue(song.ReleasedDateTicksSinceEpoch);
                     document.Add(numReleasedDateField);
 
-                    var numLanguageField = new NumericField(SongFieldNames.FieldLanguage, Field.Store.YES, true);
-                    numLanguageField.SetIntValue((int)song.Language);
-                    document.Add(numLanguageField);
-                
+                    //QUESTION: How do you add this JSON FIELD, if it needs to be analyzed but not returned in the search results?
+                    // var jsonField = @"{label:'Sony Music',Musicians:[{name:'Eddie Van Halen',roles:['composer','guitar','synth']},
+                    //                  {name:'David Lee Roth',roles:['composer','vocals']}],Duration: '5:31'}";
+
                     writer.UpdateDocument(new Term(SongFieldNames.FieldSongId, songId), document);
                 }
             }
@@ -67,6 +69,26 @@ namespace SongSearchBL
         {
             var indexDirectoryInfo = new DirectoryInfo(indexDirectory);
             indexDirectoryInfo.Delete(true);
+        }
+
+        static string FlattenFormDataJsonString(string json)
+        {
+            var jsonFormData = JToken.Parse(json);
+            JObject jsonObject = JObject.FromObject(jsonFormData);
+            var flattenedString = jsonObject.Flatten();
+            return string.Join(" ", flattenedString.Select(x => x.Value));
+        }
+
+        static IList<KeyValuePair<string, string>> Flatten(this JObject jToken)
+        {
+            return jToken
+                .Descendants()
+                .Where(p => p.Count() == 0)
+                .Aggregate(new List<KeyValuePair<string, string>>(), (properties, leaf) =>
+                {
+                    properties.Add(new KeyValuePair<string, string>(leaf.Path, leaf.ToString()));
+                    return properties;
+                });
         }
 
         static List<Song> GetSongsToIndex()
@@ -100,14 +122,15 @@ namespace SongSearchBL
                                 Woo!
                                 Yeah, we're runnin' a little bit hot tonight
                                 I can barely see the road from the heat comin'…",
-                                Languages.English),
+                                Languages.English,  @"{label:'Sony Music',Musicians:[{name:'Eddie Van Halen',roles:['composer','guitar','synth']},
+                                        {name:'David Lee Roth',roles:['composer','vocals']}],Duration: '5:31'}"),
 
                 new Song("If Your Happy And You know it", "Joe Raposo", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1957, 1, 1), DateTimeKind.Utc)), @"If you're happy and you know it, clap your hands!
                                 If you're happy and you know it, clap your hands!
                                 If you're happy and you know it, and you really want to show it;
                                 If you're happy and you know it, clap your hands
                                 jump around!",
-                                Languages.English),
+                                Languages.English,  @"{label:'unkknown',Musicians:[],Duration: '3:00'}"),
 
 
                    new Song("House of the Rising Sun", "The Animals", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1964, 5, 5), DateTimeKind.Utc)), 
@@ -135,7 +158,8 @@ Well, there is a house in New Orleans
 They call the Rising Sun
 And it's been the ruin of many a poor boy
 And God, I know I'm one",
-                    Languages.English),
+                    Languages.English, @"{label:'Keynote Records',Musicians:[{name:'Hilton Valentine',roles:['composer','guitar']},
+                                        {name:'Eric Burdon',roles:['composer','vocals']}],Duration: '4:11'}"),
 
 
                 new Song("Jump Around", "House Of pain", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1992, 5, 5), DateTimeKind.Utc)), @"Pack it up, pack it in, let me begin
@@ -158,7 +182,8 @@ And God, I know I'm one",
                     Jump up, jump up and get down!
                     Jump! Jump! Jump! Jump! (Everybody jump)
                     Jump! Jump! Jump!…",
-                    Languages.English),
+                    Languages.English,@"{label:'Tommy Boy',Musicians:[{name:'Everlast',roles:['composer','rap']},
+                                        {name:'DJ Lethal',roles:['composer','DJ']}],Duration: '3:55'}"),
 
                      new Song("Besame Mucho", "Consuelo Velasquez", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1944, 1, 12), DateTimeKind.Utc)), @"Ay
                             Bésame, bésame mucho
@@ -183,7 +208,7 @@ Bésame, bésame mucho
 Como si fuera esta la noche
 La última vez
 Bésame, bésame… …",
-                    Languages.Spanish),
+                    Languages.Spanish, "{}"),
 
 
                 new Song("Despacito", "Luis Fonsi", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(2017, 1, 12), DateTimeKind.Utc)), @"Ay
@@ -216,7 +241,7 @@ Bésame, bésame… …",
                             Y hacer de tu cuerpo todo un manuscrito (sube, sube, sube)
                             (Sube, sube) Oh
                             Quiero ver bailar tu pelo …",
-                    Languages.Spanish),
+                    Languages.Spanish, "{}"),
 
                 new Song("Nandito Ako", "Ogie Alcasid", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1988, 1, 1), DateTimeKind.Utc)), @"Mayro'n akong nais malaman
 Maaari bang magtanong?
@@ -252,7 +277,7 @@ Kung sakaling iwanan ka niya
 Huwag kang mag-alala
 May nagmamahal sa iyo,
 Nandito ako",
-                   Languages.Filipino),
+                   Languages.Filipino, "{}"),
 
                 new Song("Bikining Itim", "Bert Dominic", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1990, 1, 1), DateTimeKind.Utc)), @"Sa 'yong inaakala nalimot na kita
 Gayong ako ay laging tapat sa 'yo sinta
@@ -284,7 +309,7 @@ Huwag sanang sungkitin bikini mong itim
 Na alay mo sa 'kin
 Huwag sanang sungkitin bikini mong itim
 Na alay mo sa 'kin",
-                   Languages.Filipino)
+                   Languages.Filipino, "{}")
             };
 
 

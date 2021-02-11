@@ -14,5 +14,7 @@
         public const string FieldLanguage = "language";
 
         public const string FieldLyrics = "lyrics";
+
+        public const string FieldJson = "json";
     }
 }

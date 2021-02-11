@@ -132,6 +132,7 @@
                      SongFieldNames.FieldTitle,
                      SongFieldNames.FieldArtist,
                      SongFieldNames.FieldLyrics,
+                     SongFieldNames.FieldJson
             };
 
             MultiFieldQueryParser queryParser = new MultiFieldQueryParser(

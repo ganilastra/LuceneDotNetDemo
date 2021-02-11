@@ -47,7 +47,7 @@
             // 
             // gvResults
             // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
             this.gvResults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -58,7 +58,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvResults.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvResults.Location = new System.Drawing.Point(-1, 12);
+            this.gvResults.Location = new System.Drawing.Point(37, 12);
             this.gvResults.Name = "gvResults";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;

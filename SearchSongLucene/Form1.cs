@@ -1,4 +1,5 @@
-﻿using SongSearchBL;
+﻿using NodaTime;
+using SongSearchBL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,26 +39,33 @@ namespace SearchSongLucene
             if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
             {
                 MessageBox.Show("Please type your search term.");
+                return;
             }
-            else
+            SearchParameters searchParams = new SearchParameters
             {
+                Terms = txtSearch.Text.Split(' ')
+            };
 
-                SearchParameters searchParams = new SearchParameters
-                {
-                    Terms = txtSearch.Text.Split(' ')
-                };
-
-                if (ddlLanguage.SelectedItem != null)
-                {
-                    Enum.TryParse<Languages>(ddlLanguage.SelectedItem.ToString(), out Languages chosenLanguage);
-                    searchParams.Language = chosenLanguage;
-                }
-
-                // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
-                gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
+            if (ddlLanguage.SelectedItem != null)
+            {
+                Enum.TryParse<Languages>(ddlLanguage.SelectedItem.ToString(), out Languages chosenLanguage);
+                searchParams.Language = chosenLanguage;
             }
-        }
 
+            if (dtReleaseFrom.Value.Date != dtReleaseTo.Value.Date)
+            {
+                if (dtReleaseTo.Value.Date < dtReleaseFrom.Value.Date)
+                {
+                    MessageBox.Show("Date To should be a future date from Date From.");
+                    return;
+                }
+                searchParams.DateFrom = Instant.FromDateTimeUtc(DateTime.SpecifyKind(dtReleaseFrom.Value.Date, DateTimeKind.Utc));
+                searchParams.DateTo = Instant.FromDateTimeUtc(DateTime.SpecifyKind(dtReleaseTo.Value.Date, DateTimeKind.Utc));
+            }
+
+            // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
+            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
+        }
 
         private void btnIndexData_Click(object sender, EventArgs e)
         {

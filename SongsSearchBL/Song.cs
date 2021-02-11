@@ -4,7 +4,7 @@
     using System;
     public class Song
     {
-        public Song(string title, string artist, Instant releasedDate, string lyrics, Languages language)
+        public Song(string title, string artist, Instant releasedDate, string lyrics, Languages language, string jsonData)
         {
             this.Id = Guid.NewGuid();
             this.ReleasedDate = releasedDate;
@@ -12,6 +12,7 @@
             this.Artist = artist;
             this.Lyrics = lyrics;
             this.Language = language;
+            this.JsonData = jsonData;
         }
 
         public Guid Id { get; private set; }
@@ -19,6 +20,8 @@
         public string Artist { get; private set; }
         public string Lyrics { get; private set; }
         public Languages Language { get; private set; }
+        public string JsonData { get; private set; }
+
         public Instant ReleasedDate
         {
             get { return Instant.FromUnixTimeTicks(this.ReleasedDateTicksSinceEpoch); }
