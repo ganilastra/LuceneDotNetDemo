@@ -56,6 +56,11 @@ namespace SongSearchBL
                     numReleasedDateField.SetLongValue(song.ReleasedDateTicksSinceEpoch);
                     document.Add(numReleasedDateField);
 
+                    if (song.IsAHit == true)
+                    {
+                        document.Boost = 2.0f;
+                    }
+
                     //QUESTION: How do you add this JSON FIELD, if it needs to be analyzed but not returned in the search results?
                     // var jsonField = @"{label:'Sony Music',Musicians:[{name:'Eddie Van Halen',roles:['composer','guitar','synth']},
                     //                  {name:'David Lee Roth',roles:['composer','vocals']}],Duration: '5:31'}";
@@ -241,7 +246,7 @@ Bésame, bésame… …",
                             Y hacer de tu cuerpo todo un manuscrito (sube, sube, sube)
                             (Sube, sube) Oh
                             Quiero ver bailar tu pelo …",
-                    Languages.Spanish, "{}"),
+                    Languages.Spanish, "{}", true),
 
                 new Song("Nandito Ako", "Ogie Alcasid", Instant.FromDateTimeUtc(DateTime.SpecifyKind(new DateTime(1988, 1, 1), DateTimeKind.Utc)), @"Mayro'n akong nais malaman
 Maaari bang magtanong?

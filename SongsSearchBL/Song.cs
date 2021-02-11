@@ -4,7 +4,7 @@
     using System;
     public class Song
     {
-        public Song(string title, string artist, Instant releasedDate, string lyrics, Languages language, string jsonData)
+        public Song(string title, string artist, Instant releasedDate, string lyrics, Languages language, string jsonData, bool? isAHit = false)
         {
             this.Id = Guid.NewGuid();
             this.ReleasedDate = releasedDate;
@@ -13,6 +13,7 @@
             this.Lyrics = lyrics;
             this.Language = language;
             this.JsonData = jsonData;
+            this.IsAHit = isAHit;
         }
 
         public Guid Id { get; private set; }
@@ -20,6 +21,7 @@
         public string Artist { get; private set; }
         public string Lyrics { get; private set; }
         public Languages Language { get; private set; }
+        public bool? IsAHit { get; private set; }
         public string JsonData { get; private set; }
 
         public Instant ReleasedDate

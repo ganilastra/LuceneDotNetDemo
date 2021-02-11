@@ -8,6 +8,8 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
+
     public static class Searcher
     {
         public static List<SongsReadModel> Search(SearchParameters searchParams, SearchStrategies strategy = SearchStrategies.MultiFieldParser, string indexDirectory = @"c:\Lucene\Index")
@@ -122,6 +124,12 @@
 
             var sort = new Sort(new SortField(SongFieldNames.FieldReleaseDate, SortField.LONG, true));
             var results = searcher.Search(query, booleanFilter, 100, sort);
+
+            //var explanationHighestScorer = searcher.Explain(query,
+            //    results.ScoreDocs.First(d =>
+            //    d.Score == results.ScoreDocs
+            //    .Max(sd => sd.Score)).Doc);
+
             return results;
         }
 
@@ -152,7 +160,7 @@
             BooleanQuery termsBooleanQuery = new BooleanQuery();
             foreach (var term in terms)
             {
-                termsBooleanQuery.Add(queryParser.Parse($"+{term}*"), Occur.SHOULD);
+                termsBooleanQuery.Add(queryParser.Parse($"+{term}*~"), Occur.SHOULD);
             }
 
             return termsBooleanQuery;

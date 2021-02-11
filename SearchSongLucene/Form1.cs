@@ -64,7 +64,7 @@ namespace SearchSongLucene
             }
 
             // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
-            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
+            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQueryAndSortingAndFiltering);
         }
 
         private void btnIndexData_Click(object sender, EventArgs e)
