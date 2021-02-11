@@ -56,14 +56,15 @@ namespace SongSearchBL
                     numReleasedDateField.SetLongValue(song.ReleasedDateTicksSinceEpoch);
                     document.Add(numReleasedDateField);
 
-                    if (song.IsAHit == true)
-                    {
-                        document.Boost = 2.0f;
-                    }
-
-                    //QUESTION: How do you add this JSON FIELD, if it needs to be analyzed but not returned in the search results?
+                    // QUESTION: How do you add this JSON FIELD, if it needs to be analyzed but not returned in the search results?
                     // var jsonField = @"{label:'Sony Music',Musicians:[{name:'Eddie Van Halen',roles:['composer','guitar','synth']},
                     //                  {name:'David Lee Roth',roles:['composer','vocals']}],Duration: '5:31'}";
+
+                    // How do we store BOOLEAN properties in a lucene field?
+
+
+                    // Question: If the song is a HIT(meaning its a CHART topper), 
+                    // how do we INCREASE the CHANCES of that document to be returned in the results?
 
                     writer.UpdateDocument(new Term(SongFieldNames.FieldSongId, songId), document);
                 }
