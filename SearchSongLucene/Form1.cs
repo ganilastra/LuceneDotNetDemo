@@ -35,17 +35,27 @@ namespace SearchSongLucene
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SearchParameters searchParams= new SearchParameters();
-            searchParams.Terms = txtSearch.Text.Split(' ');
-
-            if (ddlLanguage.SelectedItem != null)
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
             {
-                Enum.TryParse<Languages>(ddlLanguage.SelectedItem.ToString(), out Languages chosenLanguage);
-                searchParams.Language = chosenLanguage;
+                MessageBox.Show("Please type your search term.");
             }
+            else
+            {
 
-            // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
-            gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
+                SearchParameters searchParams = new SearchParameters
+                {
+                    Terms = txtSearch.Text.Split(' ')
+                };
+
+                if (ddlLanguage.SelectedItem != null)
+                {
+                    Enum.TryParse<Languages>(ddlLanguage.SelectedItem.ToString(), out Languages chosenLanguage);
+                    searchParams.Language = chosenLanguage;
+                }
+
+                // TODO: CHANGE SEARCH strategies (the second parameter) here to try to LEARN searching
+                gvResults.DataSource = Searcher.Search(searchParams, SearchStrategies.MultiFieldParserWithBooleanQuery);
+            }
         }
 
 

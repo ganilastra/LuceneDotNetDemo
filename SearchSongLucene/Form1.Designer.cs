@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvResults = new System.Windows.Forms.DataGridView();
             this.ddlLanguage = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
@@ -44,16 +47,35 @@
             // 
             // gvResults
             // 
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gvResults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvResults.Location = new System.Drawing.Point(26, 12);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvResults.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvResults.Location = new System.Drawing.Point(-1, 12);
             this.gvResults.Name = "gvResults";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvResults.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gvResults.RowHeadersWidth = 51;
             this.gvResults.RowTemplate.Height = 24;
-            this.gvResults.Size = new System.Drawing.Size(1221, 369);
+            this.gvResults.Size = new System.Drawing.Size(1537, 369);
             this.gvResults.TabIndex = 0;
             // 
             // ddlLanguage
             // 
+            this.ddlLanguage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlLanguage.FormattingEnabled = true;
             this.ddlLanguage.IntegralHeight = false;
             this.ddlLanguage.Items.AddRange(new object[] {
@@ -62,7 +84,7 @@
             "Filipino"});
             this.ddlLanguage.Location = new System.Drawing.Point(384, 503);
             this.ddlLanguage.Name = "ddlLanguage";
-            this.ddlLanguage.Size = new System.Drawing.Size(225, 24);
+            this.ddlLanguage.Size = new System.Drawing.Size(225, 37);
             this.ddlLanguage.TabIndex = 1;
             this.ddlLanguage.SelectedIndexChanged += new System.EventHandler(this.ddlLanguage_SelectedIndexChanged);
             // 
@@ -78,9 +100,10 @@
             // 
             // dtReleaseFrom
             // 
+            this.dtReleaseFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtReleaseFrom.Location = new System.Drawing.Point(384, 567);
             this.dtReleaseFrom.Name = "dtReleaseFrom";
-            this.dtReleaseFrom.Size = new System.Drawing.Size(241, 22);
+            this.dtReleaseFrom.Size = new System.Drawing.Size(616, 36);
             this.dtReleaseFrom.TabIndex = 3;
             // 
             // lblDtFrom
@@ -96,16 +119,17 @@
             // 
             // dtReleaseTo
             // 
-            this.dtReleaseTo.Location = new System.Drawing.Point(713, 566);
+            this.dtReleaseTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtReleaseTo.Location = new System.Drawing.Point(384, 638);
             this.dtReleaseTo.Name = "dtReleaseTo";
-            this.dtReleaseTo.Size = new System.Drawing.Size(200, 22);
+            this.dtReleaseTo.Size = new System.Drawing.Size(616, 36);
             this.dtReleaseTo.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(642, 564);
+            this.label1.Location = new System.Drawing.Point(313, 636);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 25);
             this.label1.TabIndex = 6;
@@ -113,9 +137,10 @@
             // 
             // txtSearch
             // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(384, 437);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(489, 22);
+            this.txtSearch.Size = new System.Drawing.Size(489, 36);
             this.txtSearch.TabIndex = 9;
             // 
             // lblSearch
@@ -130,6 +155,7 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Location = new System.Drawing.Point(1011, 406);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(152, 118);
@@ -140,6 +166,7 @@
             // 
             // btnIndexData
             // 
+            this.btnIndexData.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIndexData.Location = new System.Drawing.Point(37, 420);
             this.btnIndexData.Name = "btnIndexData";
             this.btnIndexData.Size = new System.Drawing.Size(144, 118);
